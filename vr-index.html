@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>360&deg; Index</title>
+  <script src="node_modules/aframe/dist/aframe-master.js"></script>
+  <script src="assets/js/material.js"></script>
+  <script type="text/javascript">
+    AFRAME.ASSETS_PATH = "./assets";</script>
+
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <img id="bk" crossorigin="anonymous" src="assets/images/index__bk.jpg">
+      <img id="href__link1" crossorigin="anonymous" src="assets/images/right.jpg">
+      <img id="href__link2" crossorigin="anonymous" src="assets/images/left.jpg">
+      <script id="link" type="text/html">
+        <a-entity class="interact" event-set__1="_event: mousedown; scale: 1 1 1" event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+          event-set__3="_event: mouseenter; scale: 1.2 1.2 1; color: green" event-set__4="_event: mouseleave; scale: 1 1 1"></a-entity>
+      </script>
+      <img id="i" src="assets/images/i.png">
+      <img id="a" src="assets/images/a.png">
+    </a-assets>
+
+    <!-- Portals -->
+    <a-entity class="interact" position="-7 1.6 -5" rotation="0 60 0" link="on: click; href: vr-right.html; backgroundColor: grey; title: Right; image: #href__link1">
+    </a-entity>
+    <a-entity class="interact" position="-4 1.9 7" rotation="0 -40 0" link="on: click; href: vr-left.html; backgroundColor: grey; title: Left; image: #href__link2">
+    </a-entity>
+
+    <!-- Buttons -->
+    <!--<a-button id="mInteract1" class="interact" position="2.2 1.5 0" rotation="0 -100 0" value="yes" type="raised" onclick="toggleVis()"></a-button>-->
+    <a-image id="mInteract1" class="interact" onclick="toggleVis(mText1, mInteract1)" position="3 3 -0.1" rotation="0 -100 0"
+      height=".25" width=".25" src="#i"></a-image>
+    <a-image id="mInteract2" class="interact" onclick="toggleVis(mText2, mInteract2)" position="3 2.2 -0.1" rotation="0 -100 0"
+      height=".25" width=".25" src="#i"></a-image>
+    <a-image id="mInteract3" class="interact" onclick="toggleVis(mText3, mInteract3)" position="3 1.2 -0.1" rotation="0 -100 0"
+      height=".25" width=".25" src="#i"></a-image>
+    <a-image id="fInteract1" class="interact" onclick="toggleVis(mText4, mInteract4)" position="-3 1.2 0.53" rotation="0 90 0"
+      height=".25" width=".25" src="#i"></a-image>
+
+    <!-- Text -->
+    <a-entity id="mText1">
+      <a-rounded position="2.2 1.5 0.2" width="3.8" height="3.2" radius="0.05" rotation="0 -100 0" scale="0.3 0.3 0.3">
+        <a-form>
+          <a-text position="0.2 1.6 0" color="black" value="
+          Dedicated to memory of our boys 
+          who made the supreme sacrifice in 
+          World War II 
+          1941-1945
+            David L. Ceely
+            John J. Fox
+            Edward J. Hamilton
+            Eugene A. Ivers 
+            Bruce S. Macintyre
+            John A. Sawyer 
+            Harold W. Scott, Jr. 
+            Charles A Yeomans
+          "></a-text>
+        </a-form>
+      </a-rounded>
+    </a-entity>
+
+    <a-entity id="mText2">
+      <a-rounded position="2.2 1.5 0.2" width="3.8" height="3.2" radius="0.05" rotation="0 -100 0" scale="0.3 0.3 0.3">
+        <a-form>
+          <a-text position="0.2 1.6 0" color="black" value="
+          Dedicated to the memory of our 
+          boys who made the supreme 
+          sacrifice in the World War 
+          1917-1919 
+            Harold Cook Ackerson
+            Marshall Harley Couch
+            James Robert Hubbard
+            John Raymond McDermott 
+            Gustive William Nadle 
+            Charles Larett Nidd
+            Edward Sherrard Nidd
+            Harry Otto Wiemer
+          "></a-text>
+        </a-form>
+      </a-rounded>
+    </a-entity>
+
+    <a-entity id="mText3">
+      <a-rounded position="2.2 1.8 0.2" width="3.8" height="1.4" radius="0.05" rotation="0 -100 0" scale="0.3 0.3 0.3">
+        <a-form>
+          <a-text position="0.2 0.7 0" color="black" value="
+          Dedicated to the memory of 
+          Rocco J. De Mercurio who made 
+          the supreme sacrifice in the 
+          Vietnam conflict on 
+          December 31st, 1969 
+          "></a-text>
+        </a-form>
+      </a-rounded>
+    </a-entity>
+
+    <a-entity id="mText4">
+      <a-rounded position="-3 1 0" width="4" height="1.6" radius="0.05" rotation="0 90 0" scale="0.3 0.3 0.3">
+        <a-form>
+          <a-text position="0.2 0.8 0" color="black" value="
+          THIS MEMORIAL PARK
+          AND THE GARDENS ARE DEDICATED
+          TO ALL
+          ALENDALE VETERANS
+          WHO SERVED THEIR COUNTRY
+          - CENTENNIAL YEAR 1994 -  
+          "></a-text>
+        </a-form>
+      </a-rounded>
+    </a-entity>
+
+    <!-- 360-degree image. -->
+    <a-sky src="#bk"></a-sky>
+
+    <!-- Camera + cursor. -->
+    <a-entity rotation="0 100 0">
+      <a-camera look-controls>
+        <a-cursor id="cursor" material="color: grey; shader: flat" raycaster="objects: .interact">
+          <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+          <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+        </a-cursor>
+      </a-camera>
+    </a-entity>
+  </a-scene>
+  <script>
+    var descArr = ["Yes, this is also my APCS final.",
+      "Haha, yes. This is my APCS final too.",
+      "Tomatoes are high in protein and this is my APCS final as well."
+    ];
+
+    function metaDesc(desc) {
+      console.log(desc)
+    }
+
+    function getRandom(arr) {
+      var rand = Math.random();
+      return arr[Math.floor(rand * arr.length)];
+    }
+    var desc = getRandom(descArr);
+    metaDesc(desc);
+
+    // Toggle Text
+    // Add onclick="methodName()" to html element attribute to be interacted with.
+    var mtext1 = document.querySelector("#mText1");
+    mtext1.object3D.visible = false;
+    var mtext2 = document.querySelector("#mText2");
+    mtext2.object3D.visible = false;
+    var mtext3 = document.querySelector("#mText3");
+    mtext3.object3D.visible = false;
+    var mtext4 = document.querySelector("#mText4");
+    mText4.object3D.visible = false;
+
+    var mInteract1 = document.querySelector("#mInteract1");
+    var mInteract2 = document.querySelector("#mInteract2");
+    var mInteract3 = document.querySelector("#mInteract3");
+    var mInteract4 = document.querySelector("#mInteract4");
+
+    var vis = false;
+    var curVis = "";
+
+    // Toggle UI text
+    function toggleVis(text, interact) {
+      if (vis && curVis != text) {
+        curVis.object3D.visible = false;
+        text.object3D.visible = true;
+        curVis = text;
+      } else if (!vis) {
+        resetVis();
+        text.object3D.visible = true;
+        curVis = text;
+        vis = !vis;
+      } else if (vis) {
+        text.object3D.visible = false;
+        curVis = text;
+        vis = !vis;
+      }
+    }
+
+    function resetVis() {
+      mtext1.object3D.visible = false;
+      mtext2.object3D.visible = false;
+      mtext3.object3D.visible = false;
+      mtext4.object3D.visible = false;
+    }</script>
+
+</body>
+
+</html>

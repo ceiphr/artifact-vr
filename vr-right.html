@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Yes." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>360&deg; Right</title>
+
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Mobile Google Chrome -->
+  <meta name="theme-color" content="#black" />
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="Artifact VR">
+
+  <script src="node_modules/aframe/dist/aframe-master.js"></script>
+  <script src="assets/js/material.js"></script>
+  <script type="text/javascript">
+    AFRAME.ASSETS_PATH = "./assets";</script>
+
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <img id="bk" crossorigin="anonymous" src="assets/images/right.jpg">
+      <img id="href__link1" crossorigin="anonymous" src="assets/images/index__bk.jpg">
+      <script id="link" type="text/html">
+        <a-entity class="interact" event-set__1="_event: mousedown; scale: 1 1 1" event-set__2="_event: mouseup; scale: 1.2 1.2 1"
+          event-set__3="_event: mouseenter; scale: 1.2 1.2 1; color: green" event-set__4="_event: mouseleave; scale: 1 1 1"></a-entity>
+      </script>
+      <img id="i" src="assets/images/i.png">
+      <img id="a" src="assets/images/a.png">
+      <img id="im2" src="assets/images/im2.JPG">
+    </a-assets>
+    <a-entity class="interact" position="7 2 1.25" rotation="0 90 0" link="on: click; href: vr-index.html; backgroundColor: grey; title: Back; image: #href__link1">
+    </a-entity>
+
+    <a-image src="#im2" rotation="0 -30 0" position="-1.8 1.6 2.4"></a-image>
+
+    <a-image id="mInteract1" class="interact link" onclick="toggleVis(mText1, mInteract1)" position="3 1.5 -1.6" rotation="0 -70 0"
+      height=".25" width=".25" src="#i"></a-image>
+
+    <a-entity id="mText1">
+      <a-rounded position="2 1.2 -2.8" width="4" height="2" radius="0.05" rotation="0 -60 0" scale="0.3 0.3 0.3">
+        <a-form>
+          <a-text position="0.2 1 0" color="black" value="
+          Dedicated to the People of Allendale
+          
+          Lest We Forget,
+          Freedom is not Free
+
+          VFW POST 10181
+          AMERICAN LEGION POST 204
+          "></a-text>
+        </a-form>
+      </a-rounded>
+    </a-entity>
+
+    <a-entity id="fText1">
+      <a-rounded position="1 1.2 2" width="4" height="2.6" radius="0.05" rotation="0 180 0" scale="0.3 0.3 0.3">
+        <a-form>
+          <a-text position="0.2 1.9 0" color="black" value="
+          What artifact/evidence/mark of 
+          remembrance/memorialization is 
+          there in the school and/or community 
+          of that past [historical] event?          
+          "></a-text>
+          <a-entity id="audioInteract2" class="interact" onclick="toggleAudio(audio2, audioInteract2)">
+            <a-text position="1 0.6 0" color="black" value="ANSWER"></a-text>
+            <a-image position="0.6 0.6 0" height=".5" width=".5" src="#a"></a-image>
+          </a-entity>
+        </a-form>
+      </a-rounded>
+    </a-entity>
+
+    <a-entity id="fText2">
+      <a-rounded position="-2 1.2 1" width="4" height="2.6" radius="0.05" rotation="0 95 0" scale="0.3 0.3 0.3">
+        <a-form>
+          <a-text position="0.2 1.9 0" color="black" value="
+            Considering the structure, content, 
+            form, message, meaning, etc. of 
+            the artifact – what does it indicate 
+            about the values of the community 
+            and/or of the event?         
+            "></a-text>
+          <a-entity id="audioInteract1" class="interact" onclick="toggleAudio(audio1, audioInteract1)">
+            <a-text position="1 0.6 0" color="black" value="ANSWER"></a-text>
+            <a-image position="0.6 0.6 0" height=".5" width=".5" src="#a"></a-image>
+          </a-entity>
+        </a-form>
+      </a-rounded>
+    </a-entity>
+
+    <a-entity id="fText3">
+      <a-rounded position="-1.2 1.2 -2.5" width="4" height="2.6" radius="0.05" rotation="0 20 0" scale="0.3 0.3 0.3">
+        <a-form>
+          <a-text position="0.2 1.9 0" color="black" value="
+              Considering the event associated 
+              with the artifact: how did students 
+              and the community react to the 
+              events when they happened?              
+              "></a-text>
+          <a-entity id="audio3" class="interact" onclick="toggleAudio(audio3, audioInteract3)">
+            <a-text id="audioInteract3" position="1 0.6 0" color="black" value="ANSWER"></a-text>
+            <a-image position="0.6 0.6 0" height=".5" width=".5" src="#a"></a-image>
+          </a-entity>
+        </a-form>
+      </a-rounded>
+    </a-entity>
+
+    <!-- 360-degree image. -->
+    <a-sky src="#bk"></a-sky>
+
+    <!-- Camera + cursor. -->
+    <a-entity rotation="0 50 0">
+      <!--50-->
+      <a-camera look-controls>
+        <a-cursor id="cursor">
+          <a-animation begin="click" easing="ease-in" attribute="scale" fill="backwards" from="0.1 0.1 0.1" to="1 1 1" dur="150"></a-animation>
+          <a-animation begin="cursor-fusing" easing="ease-in" attribute="scale" from="1 1 1" to="0.1 0.1 0.1" dur="1500"></a-animation>
+        </a-cursor>
+      </a-camera>
+    </a-entity>
+  </a-scene>
+  <script>
+    document.querySelector('a-scene').enterVR();
+    var descArr = ["Yes, this is also my APCS final.",
+      "Haha, yes. This is my APCS final too.",
+      "Tomatoes are high in protein and this is my APCS final as well."
+    ];
+
+    function metaDesc(desc) {
+      console.log(desc)
+    }
+
+    function getRandom(arr) {
+      var rand = Math.random();
+      return arr[Math.floor(rand * arr.length)];
+    }
+    var desc = getRandom(descArr);
+    metaDesc(desc);
+
+    // Toggle Text
+    // Add onclick="methodName()" to html element attribute to be interacted with.
+    var mtext1 = document.querySelector("#mText1");
+    mText1.object3D.visible = false;
+
+    var mInteract1 = document.querySelector("#mInteract1");
+
+    var vis = false;
+    var curVis = "";
+
+    // Toggle UI text
+    function toggleVis(text, interact) {
+      if (vis && curVis != text) {
+        curVis.object3D.visible = false;
+        text.object3D.visible = true;
+        curVis = text;
+      } else if (!vis) {
+        resetVis();
+        text.object3D.visible = true;
+        curVis = text;
+        vis = !vis;
+      } else if (vis) {
+        text.object3D.visible = false;
+        curVis = text;
+        vis = !vis;
+      }
+    }
+
+    function resetVis() {
+      mtext1.object3D.visible = false;
+    }
+
+    // Toggle audio
+    var audio1 = new Audio('assets/sounds/q1.mp3');
+    var audio2 = new Audio('assets/sounds/q2.mp3');
+    var audio3 = new Audio('assets/sounds/q3.mp3');
+
+    var audioInteract1 = document.querySelector("#audioInteract1");
+    var audioInteract2 = document.querySelector("#audioInteract2");
+    var audioInteract3 = document.querySelector("#audioInteract3");
+
+    var playing = false;
+    var curPlay = "";
+    var curInteract = "";
+
+    function toggleAudio(af, interact) {
+      if (playing && curPlay != af) {
+        curPlay.pause();
+        af.play();
+        curPlay = af;
+        curInteract = interact;
+      } else if (!playing) {
+        resetAudio();
+        af.play();
+        curPlay = af;
+        curInteract = interact;
+        playing = !playing;
+      } else if (playing) {
+        af.pause();
+        curPlay = af;
+        curInteract = interact;
+        playing = !playing;
+      }
+    }
+
+    function resetAudio() {
+      audio1.pause();
+      audio2.pause();
+      audio3.pause();
+    }</script>
+
+</body>
+
+</html>
